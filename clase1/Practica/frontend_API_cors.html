@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html><body>
+    <h2>Prueba Frontend a API CON CORS (Puerto 8002)</h2>
+    <button onclick="testAPI()">Consultar Datos</button>
+    <p id="resultado">Esperando...</p>
+    <script>
+    function testAPI() {
+        fetch('http://localhost:8002/usuarios')
+        .then(response => response.json())
+        .then(data => {
+            console.log("¡Éxito! El middleware CORS permitió la conexión.");console.log("Datos recibidos:", data);
+            document.getElementById('resultado').innerHTML = "<span style='color:green'>¡Éxito total! Se cargaron " + data.length + " usuarios en el frontend. El middleware CORS hizo su trabajo.</span>";
+            })
+        .catch(error => {
+            document.getElementById('resultado').innerHTML = "<strong style='color:red'>ERROR: " + error.message + "</strong>";
+        });
+    }
+    </script>
+</body></html>

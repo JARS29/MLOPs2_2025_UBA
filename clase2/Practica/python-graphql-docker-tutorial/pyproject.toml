@@ -1,0 +1,18 @@
+[project]
+name = "python-graphql-docker-tutorial"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "JARS29",email = "jandresrsalas@gmail.com"}
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+fastapi = "^0.135.1"
+uvicorn = "^0.42.0"
+strawberry-graphql = "^0.311.3"
+requests = "^2.32.5"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
