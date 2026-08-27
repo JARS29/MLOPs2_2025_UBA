@@ -1,3 +1,3 @@
-# Sesión 3 — gRPC para microservicios de ML
+# Sesión 7 — Seguridad, operación y gobernanza de modelos en producción
 
 > 🔒 El material de esta sesión se publica en la semana correspondiente.

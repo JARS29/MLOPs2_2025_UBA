@@ -242,3 +242,11 @@ fabric.properties
 metaflow.s3.*
 .metaflow
 poetry.lock
+# Variables de entorno / secretos (NUNCA commitear)
+.env
+.env.*
+!.env.example
+
+# Entorno virtual de uv (pesado; se recrea con "uv sync" / "uv venv")
+.venv/
+uv-cache/

@@ -1,184 +1,91 @@
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
 # Operaciones de Aprendizaje Automático II
-Este repositorio contiene el material de clases (presentaciones, ejercicios y notebooks) para Operaciones de Aprendizaje Automático II (CEIA - FIUBA). 
 
-Para revisar los criterios de aprobación, ver el [documento correspondiente](CriteriosAprobacion.md).
+Material de clases de **Operaciones de Aprendizaje Automático II** — CEIA · FIUBA.
+Docente: Jaime A. Riascos-Salas.
 
-### Objetivo de la materia
-El objetivo de la materia es acercar a los alumnos los conceptos necesarios para desarrollar productos de software relacionados a Machine Learning y análisis de datos de una manera escalable y siguiendo buenas prácticas de programación. También se trabaja sobre las tareas operativas de Machine Learning (MLOps) con distintas herramientas para disponibilizar los resultados en ambientes productivos.
+> El material se publica **semana a semana**. Cada carpeta `claseN/` se completa al llegar a esa sesión. Hoy está disponible la **Sesión 1**.
 
-El curso "Operaciones de Aprendizaje Automático II" busca proporcionar a los estudiantes los conceptos y herramientas necesarias para desarrollar productos de software relacionados con Machine Learning y análisis de datos de manera escalable y siguiendo buenas prácticas de programación. También aborda las tareas operativas de Machine Learning (MLOps) utilizando diversas herramientas para disponibilizar los resultados en entornos productivos.
+Criterios de aprobación: ver [CriteriosAprobacion.md](CriteriosAprobacion.md).
 
-Este curso es la continuación de [Operaciones de Aprendizaje Automático I](https://github.com/FIUBA-Posgrado-Inteligencia-Artificial/aprendizaje_maquina_II). Los temas de MLOps II se centran en el flujo de datos (bases de datos, API REST, transporte en tiempo real), protocolos como GraphQL y gRPC, Aprendizaje Federado, Streaming, Procesamiento en la nube y Seguridad en IA. Se imparte en 8 encuentros de 3 horas cada uno.
+### Objetivo
 
-El material del curso incluye presentaciones, ejercicios y notebooks, y se espera que los estudiantes utilicen Python, Poetry/Pip/Conda, MLflow, Jupyter Notebook, GitHub, Docker y Apache Airflow. La evaluación se realiza a través de un trabajo práctico final grupal, donde los estudiantes deben implementar un ciclo de desarrollo y despliegue de modelos de Machine Learning, con opciones de implementación local o en contenedores.
+MLOps II es la continuación de [Operaciones de Aprendizaje Automático I](https://github.com/FIUBA-Posgrado-Inteligencia-Artificial/aprendizaje_maquina_II). Se centra en **cómo se comunica y opera un modelo en producción**: flujo de datos, protocolos (REST, GraphQL, gRPC), streaming, nube y Data Lakes, aprendizaje federado, y seguridad/operación/gobernanza. Son **8 encuentros de ~3 horas**.
 
-### Organización del Repositorio
-``` 
-    clase#
-        teoria
-        hands-on
-        README.md
+### Hilo conductor
+
+Todo el bimestre construye la **plataforma de predicción en tiempo real de "ML Models & Something More Inc."** (la empresa del trabajo práctico final). Cada sesión **agrega una capa** a la misma arquitectura de referencia (Airflow + MLflow + FastAPI + MinIO/S3 sobre Docker). El **mini-TP** de cada clase agrega esa capa sobre el modelo propio del estudiante.
+
+### Evaluación
+
+- **Mini-TP por clase (Sesiones 1–7):** actividad corta, individual y evaluable sobre el modelo propio.
+- **TP integrador grupal (2–6)** con hitos: arquitectura en la **Sesión 4**, checkpoint evaluado en la **Sesión 6**, defensa en la **Sesión 8**. Niveles: local (6–8) y contenedores (8–10).
+
+### Organización
+
+```
+claseN/
+    teoria/     # material teórico
+    practica/   # notebooks, código y datos (ejecutable de punta a punta)
+    README.md   # teoría, práctica (cómo correr) y qué entregar
 ```
 
+## Programa
+
+| Sesión | Tema | Carpeta | Estado |
+|---|---|---|---|
+| 1 | Del modelo al servicio: APIs REST productivas | [clase1](clase1/README.md) | ✅ Disponible |
+| 2 | GraphQL en MLOps + grafos de linaje | clase2 | 🔒 Próximamente |
+| 3 | gRPC para microservicios de ML | clase3 | 🔒 Próximamente |
+| 4 | Streaming e inferencia en tiempo real · Hito TP #1 | clase4 | 🔒 Próximamente |
+| 5 | Nube y Data Lakes para MLOps | clase5 | 🔒 Próximamente |
+| 6 | Aprendizaje Federado · Hito TP #2 | clase6 | 🔒 Próximamente |
+| 7 | Seguridad, operación y gobernanza | clase7 | 🔒 Próximamente |
+| 8 | Taller integrador y defensa | clase8 | 🔒 Próximamente |
+
 ### Requerimientos
-* Lenguaje de Programación
-    * Python >=3.10
-    * Poetry / Pip / Conda para instalar librerías
-* Librerías
-    * MLflow
-    * Librerias de manejo de datos y de modelos de aprendizaje automático.
-    * Jupiter Notebook
-* Herramientas
-    * GitHub para repositorios
-    * Docker
-    * Apache Airflow
-* IDE Recomendados 
-    * Visual Studio Code
-    * PyCharm Community Edition    
 
-#### Poetry
-Este repositorio contiene un archivo `pyproject.toml` para instalar las dependencias usando 
-[Poetry](https://python-poetry.org/)
+Python ≥ 3.10 y **[uv](https://docs.astral.sh/uv/)** para gestionar el entorno. En la raíz, `uv sync` instalar las dependencias del curso desde `pyproject.toml` / `uv.lock`. También se usan MLflow, Jupyter, GitHub, Docker y Apache Airflow. IDE: VS Code o PyCharm Community.
 
-## Contenido
- 
-### [Clase 1 - Modos de Flujo de Datos y Patrones Avanzados de APIs REST ](clase1/README.md) 
+> **Nota para quienes usan Poetry.** El repositorio migró de Poetry a **uv**: el `pyproject.toml` está en formato estándar PEP 621 y hay un `uv.lock` (se eliminó `poetry.lock`). Si preferís seguir con Poetry, usá Poetry ≥ 2.0 (que lee proyectos PEP 621) con `poetry install`, o instalá con `pip install -e .`. Los comandos de cada clase muestran la variante `uv` con su equivalente. Al migrar se ajustaron pins incompatibles del original (Airflow ↔ SQLAlchemy y algunos proveedores de Airflow).
 
-Contenido Teórico (Repaso y Profundización):
+## Puesta en marcha (leer antes de la primera clase)
 
-* Recap de los modos de flujo de datos en MLOps (bases de datos, APIs REST, transporte en tiempo real).
-* Diseño de APIs REST para servicios de modelos de ML: buenas prácticas, versionado de APIs.
-* Patrones de comunicación sincrónica (online prediction) vs. asincrónica (batch prediction) en entornos de ML.
-* Manejo de estados y escalabilidad en APIs de ML.
+### 1. Clonar el repo FUERA de servicios de sincronización
 
-Contenido Práctico:
-
-* Validación de datos de entrada en FastAPI.
-* Implementación de endpoints para predicción en línea y en lote.
-* Creación de un cliente básico para interactuar con la API.
-* Discusión sobre los desafíos del despliegue y monitoreo de estas APIs.
-
-### [Clase 2 - GraphQL en MLOps - Flexibilidad en la Consulta de Datos](clase2/README.md) 
-
-Contenido Teórico:
-
-* Introducción a GraphQL: diferencia con REST, ventajas y desventajas.
-* Conceptos clave: Schema Definition Language (SDL), Queries, Mutations, Subscriptions, Resolvers.
-* Casos de uso de GraphQL en MLOps
-* Consulta flexible de metadatos de experimentos y modelos (ej. desde MLflow).
-* Agregación de datos de múltiples servicios de MLOps.
-
-Contenido Práctico:
-
-* Implementación de un servicio GraphQL básico con FastAPI (utilizando librerías como strawberry o graphene).
-* Definición de un esquema GraphQL para exponer información (simulada) de experimentos de MLflow.
-* Realización de queries y mutations desde un cliente GraphQL (ej. GraphiQL).
-
-### [Clase 3 - gRPC para Microservicios de ML de Alta Performances](clase3/README.md) 
-Contenido Teórico:
-
-* Introducción a gRPC: RPC (Remote Procedure Call), Protocol Buffers.
-* Modelos de comunicación: Unary, Server Streaming, Client Streaming, Bidirectional Streaming.
-* Ventajas de gRPC: eficiencia, performance, contrato de servicio estricto.
-* Casos de uso en MLOps: comunicación interna entre microservicios (ej. preprocesamiento de datos, inferencia de baja latencia), comunicación entre lenguajes.
-* Comparación detallada entre REST, GraphQL y gRPC para diferentes escenarios de MLOps.
-
-Contenido Práctico:
-
-* Definición de un archivo .proto para un servicio de inferencia de ML.
-* Generación de código cliente y servidor gRPC.
-* Implementación de un servicio gRPC simple para realizar predicciones con un modelo.
-* Desarrollo de un cliente gRPC para interactuar con el servicio.
-
-### [Clase 4 - Procesamiento de Datos en Streaming para Machine Learning](clase4/README.md) 
-Contenido Teórico:
-
-* Conceptos de procesamiento de streaming: eventos, colas de mensajes, arquitecturas event-driven.
-* Herramientas comunes para streaming de datos (Kafka, Redis Streams, Spark Streaming, Flink - a alto nivel).
-* Patrones de MLOps con streaming: inferencia en tiempo real, monitoreo continuo de modelos, reentrenamiento adaptativo.
-* Desafíos en el procesamiento de streaming (latencia, consistencia, tolerancia a fallos).
-
-Contenido Práctico:
-
-* Configuración básica de una cola de mensajes (ej. Redis Streams o Kafka simulado con Docker Compose).
-* Desarrollo de un "productor" que envíe datos de transacciones simuladas al stream.
-* Implementación de un "consumidor" que lea datos del stream, realice inferencia en tiempo real con un modelo pre-entrenado y guarde los resultados.
-
-### [Clase 5 - Procesamiento en la Nube y Data Lakes para MLOps](clase5/README.md) 
-Contenido Teórico:
-
-* Introducción a las arquitecturas de MLOps en la nube: servicios de compute, storage, networking.
-* Concepto de Data Lake y su rol en MLOps.
-* Proveedores de Data Lakes en la nube (Amazon S3, Azure Data Lake Storage, Google Cloud Storage).
-* Profundización en MinIO como un Data Lake compatible con S3 para entornos locales y desarrollo.
-* Estrategias de despliegue de modelos en la nube (ej. servicios gestionados como AWS SageMaker, Google Cloud Vertex AI, Azure ML - enfoque conceptual).
-
-Contenido Práctico:
-
-* Integración avanzada de MinIO con Airflow y MLflow para la gestión de datos, modelos y artefactos.
-* Ejemplos de cómo una pipeline de Airflow interactúa con MinIO para ETL y carga de datos para entrenamiento.
-* Cómo el servicio de predicción carga el modelo directamente desde MinIO/S3.
-* Discusión sobre la transición de un entorno local containerizado a un despliegue en la nube.
-
-### [Clase 6 - Aprendizaje Federado - Privacidad y Descentralización en ML](clase6/README.md) 
-Contenido Teórico:
-
-* Conceptos fundamentales de Aprendizaje Federado (Federated Learning): entrenamiento distribuido sin compartir datos brutos.
-* Principios de privacidad: por qué es importante y cómo el Aprendizaje Federado ayuda.
-* Arquitecturas de Aprendizaje Federado: clientes, servidor de agregación, comunicación.
-* Casos de uso y aplicaciones del Aprendizaje Federado (ej. dispositivos móviles, salud, sistemas de recomendación).
-* Desafíos y limitaciones del Aprendizaje Federado (heterogeneidad de datos, comunicación, seguridad).
-* Introducción a frameworks (ej. TensorFlow Federated, PySyft - a alto nivel conceptual).
-
-Contenido Práctico:
-
-* Ejemplo de un notebook de Python que simule el entrenamiento en varios "clientes" y la agregación de los modelos en un "servidor" central.
-* Análisis de los resultados y discusión de cómo este enfoque protege la privacidad.
-
-### [Clase 7 - Seguridad en IA y Gobernanza de Modelos](clase7/README.md) 
-
-Contenido Teórico:
-
-* Amenazas de seguridad específicas en sistemas de IA:
-* Ataques de envenenamiento de datos (data poisoning): Manipulación de datos de entrenamiento.
-* Ataques adversarios (adversarial attacks): Evasión, inversión de modelos, extracción de modelos.
-* Fugas de privacidad: Exposición de información sensible a través del modelo.
-* Estrategias de defensa y mitigación: adversarial training, differential privacy (introducción), model interpretability (XAI) como medida de confianza.
-* Seguridad en la infraestructura MLOps: autenticación, autorización, gestión de secretos, aislamiento de recursos.
-* Gobernanza de Modelos: ética en IA, cumplimiento normativo, auditabilidad, explicabilidad (XAI).
-
-Contenido Práctico:
-
-* Implementación de un mecanismo de seguridad básico en la API de FastAPI (ej. autenticación con API Key o JWT simple).
-* Demostración de un ataque adversario simple y una discusión sobre posibles mitigaciones.
-* Análisis de un caso de estudio real sobre un incidente de seguridad en IA y las lecciones aprendidas.
-
-### [Sesión de Práctica Integrada / Taller de Proyecto Final](clase8/README.md) 
-
-Sesión dedicada exclusivamente al proyecto final. Presentación técnica y de diseño relacionadas con:
-
-* Integración de Airflow, MLflow, FastAPI y MinIO.
-* Configuración y orquestación con Docker Compose.
-* Implementación de los requisitos de los niveles de evaluación (local vs. contenedores).
-* Exploración de los componentes opcionales (streaming, GraphQL/gRPC, seguridad avanzada).
-* Revisión de arquitecturas de proyecto en grupo y discusión de buenas prácticas de código y documentación.
+Poner el repositorio en una carpeta local (por ejemplo `C:\Users\<usuario>\Documents\GitHub\`). **No lo ubiques dentro de OneDrive, Google Drive o Dropbox:** esos servicios sincronizan los archivos internos de `.git` y **corrompen el repositorio** (pasó en una sesión: git dejó de hacer commit). Si ya lo tienes en OneDrive, clonar de nuevo afuera y copiar tus archivos **excluyendo `.git` y `.venv`**:
 
 
-## Bibliografia
+### 2. Un solo entorno con uv (en la raíz)
 
-- Designing Machine Learning Systems. An Iterative Process for Production-Ready Applications - Chip Huyen (Ed. O’Reilly)
-- Machine Learning Engineering with Python: Manage the production life cycle of machine learning models using MLOps with practical examples - Andrew P. McMahon (Ed. Packt Publishing)
-- Engineering MLOps: Rapidly build, test, and manage production-ready machine learning life cycles at scale - Emmanuel Raj (Ed. Packt Publishing)
-- Introducing MLOps: How to Scale Machine Learning in the Enterprise - Mark Treveil, Nicolas Omont, Clément Stenac, Kenji Lefevre, Du Phan, Joachim Zentici, Adrien Lavoillotte, Makoto Miyazaki, Lynn Heidmann (Ed. O’Reilly)
-- Practical MLOps: Operationalizing Machine Learning Models - Noah Gift, Alfredo Deza (Ed. O’Reilly)
-- Machine Learning Engineering - Andriy Burkov (Ed. True Positive Inc.)
-- Machine Learning Engineering in Action - Ben Wilson (Manning)
+No hace falta un entorno por sesión. Desde la raíz del repo, una sola vez:
+
+```bash
+uv sync      # crea .venv con TODAS las dependencias del curso (incluye Jupyter e ipykernel)
+```
+
+### 3. Correr los notebooks: registrar el kernel de uv
+
+Si al abrir un `.ipynb` Jupyter o VS Code te pide `ipykernel` o no encuentra el kernel del entorno, registralo una vez:
+
+```bash
+uv run python -m ipykernel install --user --name mlops2 --display-name "Python (MLOps2 · uv)"
+```
+
+Después elegir el kernel **"Python (MLOps2 · uv)"** en el notebook. Alternativas: en VS Code, seleccionar directamente el intérprete `.venv` de la carpeta; o levantar Jupyter desde el entorno con `uv run jupyter lab`. (Si armaste el entorno con `uv pip install -r requirements.txt` en vez de `uv sync`, agregar el kernel con `uv pip install ipykernel jupyter` y volver a registrarlo.)
+
+
+## Bibliografía
+
+- *Designing Machine Learning Systems* — Chip Huyen (O’Reilly)
+- *Machine Learning Engineering with Python* — Andrew P. McMahon (Packt)
+- *Practical MLOps* — Noah Gift, Alfredo Deza (O’Reilly)
+- *Introducing MLOps* — Treveil, Omont, Stenac et al. (O’Reilly)
+- *Machine Learning Engineering* — Andriy Burkov (True Positive Inc.)
 
 ---
-Esta obra está bajo una
-[Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional][cc-by-nc-sa].
+Obra bajo [Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0][cc-by-nc-sa].
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
