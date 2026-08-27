@@ -1,8 +1,6 @@
 # Sesión 1 — Del modelo al servicio: despliegue y APIs REST productivas
 
 Primera capa de la plataforma del curso: servimos el modelo por REST y aprendemos a hacerlo bien.
-Clase **100% online**, ~90–120 min.
-
 ---
 
 ## Parte teórica (`teoria/`)
@@ -14,8 +12,6 @@ Clase **100% online**, ~90–120 min.
 - **HTTP en detalle:** modelo cliente–servidor, métodos ↔ CRUD, códigos de estado, endpoints, OpenAPI.
 - **Diseño productivo:** contratos y validación (Pydantic), versionado (API y modelo), estado/escalabilidad, qué monitorear.
 - **Implementación en Python:** Flask/Django/**FastAPI**; consumir APIs con `requests`; interfaces rápidas con gradio/streamlit.
-
-Material: `MLOPS II - Intro.pdf`, `clase1.pdf`. La presentación (`Sesion1_APIs_REST_2026.pptx`) y las guías del docente están fuera del repo, junto a los pptx.
 
 ## Parte práctica (`Practica/`) — cómo correr
 
@@ -64,7 +60,7 @@ Qué hace el Dockerfile: parte de `python:3.11-slim`, copia el binario de **uv**
 
 ## Qué se debe entregar — Mini-TP 1 (individual, esta semana)
 
-Serví **tu** modelo (el de Aprendizaje de Máquina, o uno simple) con FastAPI:
+Servir **tu** modelo (el de Aprendizaje de Máquina, o uno simple) con FastAPI:
 
 1. Contrato Pydantic con las **features reales** del modelo.
 2. Endpoint `/v1/predict` (online) y `/health`.
