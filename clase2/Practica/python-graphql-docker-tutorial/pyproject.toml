@@ -1,0 +1,16 @@
+[project]
+name = "python-graphql-docker-tutorial"
+version = "0.1.0"
+description = "API GraphQL de ejemplo (FastAPI + Strawberry) para MLOps II"
+authors = [{ name = "JARS29", email = "jandresrsalas@gmail.com" }]
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "fastapi>=0.135.1",
+    "uvicorn>=0.42.0",
+    "strawberry-graphql>=0.311.3",
+    "requests>=2.32.5",
+]
+
+# Es una aplicación, no un paquete instalable: uv no intenta construirla.
+[tool.uv]
+package = false
